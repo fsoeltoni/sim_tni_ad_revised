@@ -1,4 +1,4 @@
-import { mockDataServer } from "../../../../providers/data";
+import { mockDataServer } from "../../../providers/data";
 
 export default async val => {
   if (val) {

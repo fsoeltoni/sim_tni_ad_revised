@@ -1,9 +1,9 @@
 import React from "react";
-import moment from "moment";
 import {
   Create,
   SimpleForm,
   NumberInput,
+  TextInput,
   Edit,
   List,
   Datagrid,
@@ -12,43 +12,42 @@ import {
   EditButton,
   DeleteButton
 } from "react-admin";
-import FormattedDateField from "../../helpers/components/FormattedDateField";
-import SimToolbar from "./helpers/components/SimToolbar";
+import moment from "moment";
 import validateNrpNip from "../../helpers/components/validations/validateNrpNip";
+import PenggunaToolbar from "./helpers/components/PenggunaToolbar";
 
-const CreateSim = ({ ...rest }) => (
-  <Create {...rest} title="SIM">
+const CreatePengguna = ({ ...rest }) => (
+  <Create {...rest} title="Pengguna">
     <SimpleForm
       defaultValue={{
         created: moment(),
-        updated: moment(),
-        berlaku_hingga: moment().add(5, "y")
+        updated: moment()
       }}
-      toolbar={<SimToolbar />}
+      toolbar={<PenggunaToolbar />}
     >
       <NumberInput source="nrp_nip" label="NRP/NIP" validate={validateNrpNip} />
+      <TextInput source="sandi" label="Sandi" />
     </SimpleForm>
   </Create>
 );
 
-const EditSim = ({ ...rest }) => (
-  <Edit {...rest} title="SIM">
+const EditPengguna = ({ ...rest }) => (
+  <Edit {...rest} title="Pengguna">
     <SimpleForm
       defaultValue={{
         updated: moment()
       }}
-      toolbar={<SimToolbar />}
+      toolbar={<PenggunaToolbar />}
     >
       <NumberInput source="nrp_nip" label="NRP/NIP" validate={validateNrpNip} />
+      <TextInput source="sandi" label="Sandi" />
     </SimpleForm>
   </Edit>
 );
 
-const ListSim = ({ ...rest }) => (
-  <List {...rest} title="SIM" sort={{ field: "created", order: "DESC" }}>
+const ListPengguna = ({ ...rest }) => (
+  <List {...rest} title="Pengguna" sort={{ field: "created", order: "DESC" }}>
     <Datagrid>
-      <FormattedDateField source="created" label="Dibuat" />
-      <FormattedDateField source="berlaku_hingga" label="Berlaku Hingga" />
       <ReferenceField
         source="personel_id"
         label="Personel"
@@ -63,7 +62,7 @@ const ListSim = ({ ...rest }) => (
 );
 
 export default {
-  create: CreateSim,
-  edit: EditSim,
-  list: ListSim
+  create: CreatePengguna,
+  edit: EditPengguna,
+  list: ListPengguna
 };
