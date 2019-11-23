@@ -3,6 +3,8 @@ import {
   Create,
   SimpleForm,
   NumberInput,
+  ReferenceInput,
+  SelectInput,
   TextInput,
   Edit,
   List,
@@ -25,6 +27,14 @@ const CreatePengguna = ({ ...rest }) => (
       }}
       toolbar={<PenggunaToolbar />}
     >
+      <ReferenceInput
+        source="penyelenggara_id"
+        label="Penyelenggara"
+        reference="penyelenggara"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="kode" />
+      </ReferenceInput>
       <NumberInput source="nrp_nip" label="NRP/NIP" validate={validateNrpNip} />
       <TextInput source="sandi" label="Sandi" />
     </SimpleForm>
@@ -39,6 +49,14 @@ const EditPengguna = ({ ...rest }) => (
       }}
       toolbar={<PenggunaToolbar />}
     >
+      <ReferenceInput
+        source="penyelenggara_id"
+        label="Penyelenggara"
+        reference="penyelenggara"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="kode" />
+      </ReferenceInput>
       <NumberInput source="nrp_nip" label="NRP/NIP" validate={validateNrpNip} />
       <TextInput source="sandi" label="Sandi" />
     </SimpleForm>
@@ -48,6 +66,13 @@ const EditPengguna = ({ ...rest }) => (
 const ListPengguna = ({ ...rest }) => (
   <List {...rest} title="Pengguna" sort={{ field: "created", order: "DESC" }}>
     <Datagrid>
+      <ReferenceField
+        source="penyelenggara_id"
+        label="Penyelenggara"
+        reference="penyelenggara"
+      >
+        <TextField source="kode" />
+      </ReferenceField>
       <ReferenceField
         source="personel_id"
         label="Personel"

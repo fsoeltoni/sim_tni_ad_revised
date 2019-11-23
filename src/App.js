@@ -7,6 +7,7 @@ import sim from "./resources/sim";
 import personel from "./resources/personel";
 import pengguna from "./resources/pengguna";
 import auth from "./providers/auth";
+import penyelenggara from "./resources/penyelenggara";
 
 const title = attrs.title;
 const dataProvider = mockDataServer;
@@ -17,6 +18,11 @@ const App = () => (
     <Resource name="sim" options={{ label: "SIM" }} {...sim} />
     <Resource name="pengguna" options={{ label: "Pengguna" }} {...pengguna} />
     <Resource name="personel" options={{ label: "Personel" }} {...personel} />
+    <Resource
+      name="penyelenggara"
+      options={{ label: "Penyelenggara" }}
+      {...penyelenggara}
+    />
   </Admin>
 );
 
