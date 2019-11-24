@@ -9,6 +9,7 @@ import pengguna from "./resources/pengguna";
 import auth from "./providers/auth";
 import penyelenggara from "./resources/penyelenggara";
 import lingkup from "./resources/lingkup";
+import golongan_sim from "./resources/golongan_sim";
 
 const title = attrs.title;
 const dataProvider = mockDataServer;
@@ -17,6 +18,11 @@ const authProvider = auth;
 const App = () => (
   <Admin title={title} dataProvider={dataProvider} authProvider={authProvider}>
     <Resource name="sim" options={{ label: "SIM" }} {...sim} />
+    <Resource
+      name="golongan_sim"
+      options={{ label: "Golongan SIM" }}
+      {...golongan_sim}
+    />
     <Resource name="pengguna" options={{ label: "Pengguna" }} {...pengguna} />
     <Resource name="personel" options={{ label: "Personel" }} {...personel} />
     <Resource

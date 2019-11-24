@@ -3,6 +3,8 @@ import moment from "moment";
 import {
   Create,
   SimpleForm,
+  ReferenceInput,
+  SelectInput,
   NumberInput,
   Edit,
   List,
@@ -30,6 +32,14 @@ const CreateSim = ({ permissions, ...rest }) =>
         }}
         toolbar={<SimToolbar />}
       >
+        <ReferenceInput
+          source="golongan_sim_id"
+          label="Golongan SIM"
+          reference="golongan_sim"
+          sort={{ field: "id", order: "ASC" }}
+        >
+          <SelectInput optionText="nama" />
+        </ReferenceInput>
         <NumberInput
           source="nrp_nip"
           label="NRP/NIP"
@@ -51,6 +61,14 @@ const EditSim = ({ permissions, ...rest }) =>
         }}
         toolbar={<SimToolbar />}
       >
+        <ReferenceInput
+          source="golongan_sim_id"
+          label="Golongan SIM"
+          reference="golongan_sim"
+          sort={{ field: "id", order: "ASC" }}
+        >
+          <SelectInput optionText="nama" />
+        </ReferenceInput>
         <NumberInput
           source="nrp_nip"
           label="NRP/NIP"
@@ -70,6 +88,13 @@ const ListSim = ({ permissions, ...rest }) =>
           source="personel_id"
           label="Personel"
           reference="personel"
+        >
+          <TextField source="nama" />
+        </ReferenceField>
+        <ReferenceField
+          source="golongan_sim_id"
+          label="Golongan SIM"
+          reference="golongan_sim"
         >
           <TextField source="nama" />
         </ReferenceField>
