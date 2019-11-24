@@ -5,6 +5,7 @@ import {
   NumberInput,
   ReferenceInput,
   SelectInput,
+  FormDataConsumer,
   TextInput,
   Edit,
   List,
@@ -28,13 +29,29 @@ const CreatePengguna = ({ ...rest }) => (
       toolbar={<PenggunaToolbar />}
     >
       <ReferenceInput
-        source="penyelenggara_id"
-        label="Penyelenggara"
-        reference="penyelenggara"
+        source="lingkup_id"
+        label="Lingkup"
+        reference="lingkup"
         sort={{ field: "id", order: "ASC" }}
       >
-        <SelectInput optionText="kode" />
+        <SelectInput optionText="nama" />
       </ReferenceInput>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.lingkup_id && (
+            <ReferenceInput
+              source="penyelenggara_id"
+              label="Penyelenggara"
+              reference="penyelenggara"
+              sort={{ field: "id", order: "ASC" }}
+              filter={{ lingkup_id: formData.lingkup_id }}
+              {...rest}
+            >
+              <SelectInput optionText="kode" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
       <NumberInput source="nrp_nip" label="NRP/NIP" validate={validateNrpNip} />
       <TextInput source="sandi" label="Sandi" />
     </SimpleForm>
@@ -50,13 +67,29 @@ const EditPengguna = ({ ...rest }) => (
       toolbar={<PenggunaToolbar />}
     >
       <ReferenceInput
-        source="penyelenggara_id"
-        label="Penyelenggara"
-        reference="penyelenggara"
+        source="lingkup_id"
+        label="Lingkup"
+        reference="lingkup"
         sort={{ field: "id", order: "ASC" }}
       >
-        <SelectInput optionText="kode" />
+        <SelectInput optionText="nama" />
       </ReferenceInput>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.lingkup_id && (
+            <ReferenceInput
+              source="penyelenggara_id"
+              label="Penyelenggara"
+              reference="penyelenggara"
+              sort={{ field: "id", order: "ASC" }}
+              filter={{ lingkup_id: formData.lingkup_id }}
+              {...rest}
+            >
+              <SelectInput optionText="kode" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
       <NumberInput source="nrp_nip" label="NRP/NIP" validate={validateNrpNip} />
       <TextInput source="sandi" label="Sandi" />
     </SimpleForm>
@@ -66,6 +99,9 @@ const EditPengguna = ({ ...rest }) => (
 const ListPengguna = ({ ...rest }) => (
   <List {...rest} title="Pengguna" sort={{ field: "created", order: "DESC" }}>
     <Datagrid>
+      <ReferenceField source="lingkup_id" label="Lingkup" reference="lingkup">
+        <TextField source="nama" />
+      </ReferenceField>
       <ReferenceField
         source="penyelenggara_id"
         label="Penyelenggara"

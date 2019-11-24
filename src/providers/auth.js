@@ -34,17 +34,16 @@ export default {
     const status = error.status;
 
     if (status === 401 || status === 403) {
-      console.log(status);
       storage.clear();
       return Promise.reject();
     }
 
     return Promise.resolve();
   },
-  checkAuth: () => {
+  checkAuth: () => (storage.get() ? Promise.resolve() : Promise.reject()),
+  getPermissions: () => {
     const pengguna = storage.get();
 
     return pengguna ? Promise.resolve(pengguna) : Promise.reject();
-  },
-  getPermissions: () => Promise.reject("Unknown method")
+  }
 };
