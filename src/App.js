@@ -8,6 +8,7 @@ import personel from "./resources/personel";
 import pengguna from "./resources/pengguna";
 import auth from "./providers/auth";
 import penyelenggara from "./resources/penyelenggara";
+import lingkup from "./resources/lingkup";
 
 const title = attrs.title;
 const dataProvider = mockDataServer;
@@ -23,6 +24,7 @@ const App = () => (
       options={{ label: "Penyelenggara" }}
       {...penyelenggara}
     />
+    <Resource name="lingkup" options={{ label: "Lingkup" }} {...lingkup} />
   </Admin>
 );
 

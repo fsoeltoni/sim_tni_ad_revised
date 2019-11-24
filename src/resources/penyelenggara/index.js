@@ -2,15 +2,21 @@ import React from "react";
 import {
   Create,
   SimpleForm,
+  ReferenceInput,
+  SelectInput,
   TextInput,
+  NumberInput,
   Edit,
   List,
   Datagrid,
+  ReferenceField,
   TextField,
   EditButton,
   DeleteButton
 } from "react-admin";
 import moment from "moment";
+import validateNrpNip from "../../helpers/components/validations/validateNrpNip";
+import PenyelenggaraToolbar from "./helpers/components/PenyelenggaraToolbar";
 
 const CreatePenyelenggara = ({ ...rest }) => (
   <Create {...rest} title="Penyelenggara">
@@ -19,9 +25,23 @@ const CreatePenyelenggara = ({ ...rest }) => (
         created: moment(),
         updated: moment()
       }}
+      toolbar={<PenyelenggaraToolbar />}
     >
+      <ReferenceInput
+        source="lingkup_id"
+        label="Lingkup"
+        reference="lingkup"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="nama" />
+      </ReferenceInput>
       <TextInput source="nama" label="Nama" />
       <TextInput source="kode" label="Kode" />
+      <NumberInput
+        source="nrp_nip_komandan_id"
+        label="NRP/NIP Komandan"
+        validate={validateNrpNip}
+      />
     </SimpleForm>
   </Create>
 );
@@ -32,9 +52,23 @@ const EditPenyelenggara = ({ ...rest }) => (
       defaultValue={{
         updated: moment()
       }}
+      toolbar={<PenyelenggaraToolbar />}
     >
+      <ReferenceInput
+        source="lingkup_id"
+        label="Lingkup"
+        reference="lingkup"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="nama" />
+      </ReferenceInput>
       <TextInput source="nama" label="Nama" />
       <TextInput source="kode" label="Kode" />
+      <NumberInput
+        source="nrp_nip_komandan_id"
+        label="NRP/NIP Komandan"
+        validate={validateNrpNip}
+      />
     </SimpleForm>
   </Edit>
 );
@@ -42,8 +76,17 @@ const EditPenyelenggara = ({ ...rest }) => (
 const ListPenyelenggara = ({ ...rest }) => (
   <List {...rest} title="Penyelenggara" sort={{ field: "id", order: "ASC" }}>
     <Datagrid>
-      <TextField source="nama" label="Nama" />
+      <ReferenceField source="lingkup_id" label="Lingkup" reference="lingkup">
+        <TextField source="nama" />
+      </ReferenceField>
       <TextField source="kode" label="Kode" />
+      <ReferenceField
+        source="komandan_id"
+        label="Komandan"
+        reference="personel"
+      >
+        <TextField source="nama" />
+      </ReferenceField>
       <EditButton />
       <DeleteButton />
     </Datagrid>
