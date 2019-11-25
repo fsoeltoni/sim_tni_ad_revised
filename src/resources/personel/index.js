@@ -28,6 +28,14 @@ const CreatePersonel = ({ ...rest }) => (
       <TextInput source="nama" label="Nama" />
       <DateInput source="tanggal_lahir" label="Tanggal Lahir" />
       <ReferenceInput
+        source="golongan_darah_id"
+        label="Golongan Darah"
+        reference="golongan_darah"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="nama" />
+      </ReferenceInput>
+      <ReferenceInput
         source="jenis_personel_id"
         label="Jenis Personel"
         reference="jenis_personel"
@@ -138,6 +146,14 @@ const EditPersonel = ({ ...rest }) => (
     >
       <TextInput source="nama" label="Nama" />
       <DateInput source="tanggal_lahir" label="Tanggal Lahir" />
+      <ReferenceInput
+        source="golongan_darah_id"
+        label="Golongan Darah"
+        reference="golongan_darah"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="nama" />
+      </ReferenceInput>
       <ReferenceInput
         source="jenis_personel_id"
         label="Jenis Personel"
