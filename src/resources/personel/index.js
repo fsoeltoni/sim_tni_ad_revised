@@ -26,6 +26,38 @@ const CreatePersonel = ({ ...rest }) => (
       }}
     >
       <TextInput source="nama" label="Nama" />
+      <ReferenceInput
+        source="provinsi_tempat_lahir_id"
+        label="Provinsi Tempat Lahir"
+        reference="provinsi"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="kode" />
+      </ReferenceInput>
+      <ReferenceInput
+        source="jenis_kota_kabupaten_id"
+        label="Jenis Kota/Kabupaten"
+        reference="jenis_kota_kabupaten"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="nama" />
+      </ReferenceInput>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.provinsi_tempat_lahir_id &&
+          formData.jenis_kota_kabupaten_id && (
+            <ReferenceInput
+              source="tempat_lahir_id"
+              label="Tempat Lahir"
+              reference="kota_kabupaten"
+              sort={{ field: "id", order: "ASC" }}
+              {...rest}
+            >
+              <SelectInput optionText="nama" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
       <DateInput source="tanggal_lahir" label="Tanggal Lahir" />
       <ReferenceInput
         source="golongan_darah_id"
@@ -145,6 +177,42 @@ const EditPersonel = ({ ...rest }) => (
       }}
     >
       <TextInput source="nama" label="Nama" />
+      <ReferenceInput
+        source="provinsi_tempat_lahir_id"
+        label="Provinsi Tempat Lahir"
+        reference="provinsi"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="kode" />
+      </ReferenceInput>
+      <ReferenceInput
+        source="jenis_kota_kabupaten_id"
+        label="Jenis Kota/Kabupaten"
+        reference="jenis_kota_kabupaten"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="nama" />
+      </ReferenceInput>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.provinsi_tempat_lahir_id &&
+          formData.jenis_kota_kabupaten_id && (
+            <ReferenceInput
+              source="tempat_lahir_id"
+              label="Tempat Lahir"
+              reference="kota_kabupaten"
+              sort={{ field: "id", order: "ASC" }}
+              filter={{
+                provinsi_tempat_lahir_id: formData.provinsi_tempat_lahir_id,
+                jenis_kota_kabupaten_id: formData.jenis_kota_kabupaten_id
+              }}
+              {...rest}
+            >
+              <SelectInput optionText="nama" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
       <DateInput source="tanggal_lahir" label="Tanggal Lahir" />
       <ReferenceInput
         source="golongan_darah_id"

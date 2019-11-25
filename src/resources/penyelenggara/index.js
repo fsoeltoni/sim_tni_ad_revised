@@ -3,6 +3,7 @@ import {
   Create,
   SimpleForm,
   ReferenceInput,
+  FormDataConsumer,
   SelectInput,
   TextInput,
   NumberInput,
@@ -37,6 +38,38 @@ const CreatePenyelenggara = ({ ...rest }) => (
       </ReferenceInput>
       <TextInput source="nama" label="Nama" />
       <TextInput source="kode" label="Kode" />
+      <ReferenceInput
+        source="provinsi_markas_id"
+        label="Provinsi Markas"
+        reference="provinsi"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="kode" />
+      </ReferenceInput>
+      <ReferenceInput
+        source="jenis_kota_kabupaten_id"
+        label="Jenis Kota/Kabupaten"
+        reference="jenis_kota_kabupaten"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="nama" />
+      </ReferenceInput>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.provinsi_markas_id &&
+          formData.jenis_kota_kabupaten_id && (
+            <ReferenceInput
+              source="markas_id"
+              label="Markas"
+              reference="kota_kabupaten"
+              sort={{ field: "id", order: "ASC" }}
+              {...rest}
+            >
+              <SelectInput optionText="nama" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
       <NumberInput
         source="nrp_nip_komandan_id"
         label="NRP/NIP Komandan"
@@ -64,6 +97,38 @@ const EditPenyelenggara = ({ ...rest }) => (
       </ReferenceInput>
       <TextInput source="nama" label="Nama" />
       <TextInput source="kode" label="Kode" />
+      <ReferenceInput
+        source="provinsi_markas_id"
+        label="Provinsi Markas"
+        reference="provinsi"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="kode" />
+      </ReferenceInput>
+      <ReferenceInput
+        source="jenis_kota_kabupaten_id"
+        label="Jenis Kota/Kabupaten"
+        reference="jenis_kota_kabupaten"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="nama" />
+      </ReferenceInput>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.provinsi_markas_id &&
+          formData.jenis_kota_kabupaten_id && (
+            <ReferenceInput
+              source="markas_id"
+              label="Markas"
+              reference="kota_kabupaten"
+              sort={{ field: "id", order: "ASC" }}
+              {...rest}
+            >
+              <SelectInput optionText="nama" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
       <NumberInput
         source="nrp_nip_komandan_id"
         label="NRP/NIP Komandan"
@@ -84,6 +149,13 @@ const ListPenyelenggara = ({ ...rest }) => (
         source="komandan_id"
         label="Komandan"
         reference="personel"
+      >
+        <TextField source="nama" />
+      </ReferenceField>
+      <ReferenceField
+        source="markas_id"
+        label="Markas"
+        reference="kota_kabupaten"
       >
         <TextField source="nama" />
       </ReferenceField>

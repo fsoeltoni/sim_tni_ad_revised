@@ -21,6 +21,7 @@ import kesatuan from "./resources/kesatuan";
 import golongan_darah from "./resources/golongan_darah";
 import provinsi from "./resources/provinsi";
 import jenis_kota_kabupaten from "./resources/jenis_kota_kabupaten";
+import kota_kabupaten from "./resources/kota_kabupaten";
 
 const title = attrs.title;
 const dataProvider = mockDataServer;
@@ -50,6 +51,11 @@ const App = () => (
       name="jenis_personel"
       options={{ label: "Jenis Personel" }}
       {...jenis_personel}
+    />
+    <Resource
+      name="kota_kabupaten"
+      options={{ label: "Kota/Kabupaten" }}
+      {...kota_kabupaten}
     />
     <Resource
       name="jenis_kota_kabupaten"
