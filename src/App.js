@@ -22,6 +22,7 @@ import golongan_darah from "./resources/golongan_darah";
 import provinsi from "./resources/provinsi";
 import jenis_kota_kabupaten from "./resources/jenis_kota_kabupaten";
 import kota_kabupaten from "./resources/kota_kabupaten";
+import jenis_pomdam from "./resources/jenis_pomdam";
 
 const title = attrs.title;
 const dataProvider = mockDataServer;
@@ -85,6 +86,11 @@ const App = () => (
       name="penyelenggara"
       options={{ label: "Penyelenggara" }}
       {...penyelenggara}
+    />
+    <Resource
+      name="jenis_pomdam"
+      options={{ label: "Jenis Pomdam" }}
+      {...jenis_pomdam}
     />
     <Resource name="lingkup" options={{ label: "Lingkup" }} {...lingkup} />
   </Admin>
