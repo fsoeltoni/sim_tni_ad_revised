@@ -52,6 +52,14 @@ const CreatePengguna = ({ ...rest }) => (
           )
         }
       </FormDataConsumer>
+      <ReferenceInput
+        source="jenis_pengguna_id"
+        label="Jenis Pengguna"
+        reference="jenis_pengguna"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="nama" />
+      </ReferenceInput>
       <NumberInput source="nrp_nip" label="NRP/NIP" validate={validateNrpNip} />
       <TextInput source="sandi" label="Sandi" />
     </SimpleForm>
@@ -90,6 +98,14 @@ const EditPengguna = ({ ...rest }) => (
           )
         }
       </FormDataConsumer>
+      <ReferenceInput
+        source="jenis_pengguna_id"
+        label="Jenis Pengguna"
+        reference="jenis_pengguna"
+        sort={{ field: "id", order: "ASC" }}
+      >
+        <SelectInput optionText="nama" />
+      </ReferenceInput>
       <NumberInput source="nrp_nip" label="NRP/NIP" validate={validateNrpNip} />
       <TextInput source="sandi" label="Sandi" />
     </SimpleForm>
@@ -108,6 +124,13 @@ const ListPengguna = ({ ...rest }) => (
         reference="penyelenggara"
       >
         <TextField source="kode" />
+      </ReferenceField>
+      <ReferenceField
+        source="jenis_pengguna_id"
+        label="Jenis Pengguna"
+        reference="jenis_pengguna"
+      >
+        <TextField source="nama" />
       </ReferenceField>
       <ReferenceField
         source="personel_id"
