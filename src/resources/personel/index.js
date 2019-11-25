@@ -89,6 +89,23 @@ const CreatePersonel = ({ ...rest }) => (
           )
         }
       </FormDataConsumer>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.jenis_personel_id &&
+          formData.jenis_personel_id === 1 &&
+          formData.kecabangan_id && (
+            <ReferenceInput
+              source="korps_id"
+              label="Korps"
+              reference="korps"
+              sort={{ field: "id", order: "ASC" }}
+              {...rest}
+            >
+              <SelectInput optionText="kode" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
     </SimpleForm>
   </Create>
 );
@@ -156,6 +173,23 @@ const EditPersonel = ({ ...rest }) => (
               source="kecabangan_id"
               label="Kecabangan"
               reference="kecabangan"
+              sort={{ field: "id", order: "ASC" }}
+              {...rest}
+            >
+              <SelectInput optionText="kode" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.jenis_personel_id &&
+          formData.jenis_personel_id === 1 &&
+          formData.kecabangan_id && (
+            <ReferenceInput
+              source="korps_id"
+              label="Korps"
+              reference="korps"
               sort={{ field: "id", order: "ASC" }}
               {...rest}
             >

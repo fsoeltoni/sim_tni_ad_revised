@@ -16,6 +16,7 @@ import jenis_personel from "./resources/jenis_personel";
 import jenjang_kepangkatan from "./resources/jenjang_kepangkatan";
 import pangkat from "./resources/pangkat";
 import kecabangan from "./resources/kecabangan";
+import korps from "./resources/korps";
 
 const title = attrs.title;
 const dataProvider = mockDataServer;
@@ -46,6 +47,7 @@ const App = () => (
       options={{ label: "Jenis Personel" }}
       {...jenis_personel}
     />
+    <Resource name="korps" options={{ label: "Korps" }} {...korps} />
     <Resource
       name="kecabangan"
       options={{ label: "Kecabangan" }}
