@@ -99,6 +99,25 @@ const CreatePersonel = ({ ...rest }) => (
               label="Korps"
               reference="korps"
               sort={{ field: "id", order: "ASC" }}
+              filter={{ kecabangan_id: formData.kecabangan_id }}
+              {...rest}
+            >
+              <SelectInput optionText="kode" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.jenis_personel_id &&
+          formData.jenis_personel_id === 1 &&
+          formData.korps_id && (
+            <ReferenceInput
+              source="kesatuan_id"
+              label="Kesatuan"
+              reference="kesatuan"
+              sort={{ field: "id", order: "ASC" }}
+              filter={{ korps_id: formData.korps_id }}
               {...rest}
             >
               <SelectInput optionText="kode" />
@@ -191,6 +210,25 @@ const EditPersonel = ({ ...rest }) => (
               label="Korps"
               reference="korps"
               sort={{ field: "id", order: "ASC" }}
+              filter={{ kecabangan_id: formData.kecabangan_id }}
+              {...rest}
+            >
+              <SelectInput optionText="kode" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.jenis_personel_id &&
+          formData.jenis_personel_id === 1 &&
+          formData.korps_id && (
+            <ReferenceInput
+              source="kesatuan_id"
+              label="Kesatuan"
+              reference="kesatuan"
+              sort={{ field: "id", order: "ASC" }}
+              filter={{ korps_id: formData.korps_id }}
               {...rest}
             >
               <SelectInput optionText="kode" />
