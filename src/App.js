@@ -14,6 +14,7 @@ import pengajuan_sim from "./resources/pengajuan_sim";
 import jenis_pengguna from "./resources/jenis_pengguna";
 import jenis_personel from "./resources/jenis_personel";
 import jenjang_kepangkatan from "./resources/jenjang_kepangkatan";
+import pangkat from "./resources/pangkat";
 
 const title = attrs.title;
 const dataProvider = mockDataServer;
@@ -44,6 +45,7 @@ const App = () => (
       options={{ label: "Jenis Personel" }}
       {...jenis_personel}
     />
+    <Resource name="pangkat" options={{ label: "Pangkat" }} {...pangkat} />
     <Resource
       name="jenjang_kepangkatan"
       options={{ label: "Jenjang Kepangkatan" }}
