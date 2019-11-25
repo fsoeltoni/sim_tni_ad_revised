@@ -6,6 +6,7 @@ import {
   DateInput,
   ReferenceInput,
   SelectInput,
+  FormDataConsumer,
   Edit,
   List,
   Datagrid,
@@ -35,6 +36,22 @@ const CreatePersonel = ({ ...rest }) => (
         <SelectInput optionText="nama" />
       </ReferenceInput>
       <TextInput source="nrp_nip" label="NRP/NIP" />
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.jenis_personel_id &&
+          formData.jenis_personel_id === 1 && (
+            <ReferenceInput
+              source="jenjang_kepangkatan_id"
+              label="Jenjang Kepangkatan"
+              reference="jenjang_kepangkatan"
+              sort={{ field: "id", order: "ASC" }}
+              {...rest}
+            >
+              <SelectInput optionText="nama" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
     </SimpleForm>
   </Create>
 );
@@ -57,6 +74,22 @@ const EditPersonel = ({ ...rest }) => (
         <SelectInput optionText="nama" />
       </ReferenceInput>
       <TextInput source="nrp_nip" label="NRP/NIP" />
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.jenis_personel_id &&
+          formData.jenis_personel_id === 1 && (
+            <ReferenceInput
+              source="jenjang_kepangkatan_id"
+              label="Jenjang Kepangkatan"
+              reference="jenjang_kepangkatan"
+              sort={{ field: "id", order: "ASC" }}
+              {...rest}
+            >
+              <SelectInput optionText="nama" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
     </SimpleForm>
   </Edit>
 );
