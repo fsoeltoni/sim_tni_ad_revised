@@ -52,6 +52,43 @@ const CreatePersonel = ({ ...rest }) => (
           )
         }
       </FormDataConsumer>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.jenis_personel_id &&
+          formData.jenis_personel_id === 1 &&
+          formData.jenjang_kepangkatan_id && (
+            <ReferenceInput
+              source="pangkat_id"
+              label="Pangkat"
+              reference="pangkat"
+              sort={{ field: "id", order: "ASC" }}
+              filter={{
+                jenjang_kepangkatan_id: formData.jenjang_kepangkatan_id
+              }}
+              {...rest}
+            >
+              <SelectInput optionText="nama" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.jenis_personel_id &&
+          formData.jenis_personel_id === 1 &&
+          formData.pangkat && (
+            <ReferenceInput
+              source="kecabangan_id"
+              label="Kecabangan"
+              reference="kecabangan"
+              sort={{ field: "id", order: "ASC" }}
+              {...rest}
+            >
+              <SelectInput optionText="kode" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
     </SimpleForm>
   </Create>
 );
@@ -86,6 +123,43 @@ const EditPersonel = ({ ...rest }) => (
               {...rest}
             >
               <SelectInput optionText="nama" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.jenis_personel_id &&
+          formData.jenis_personel_id === 1 &&
+          formData.jenjang_kepangkatan_id && (
+            <ReferenceInput
+              source="pangkat_id"
+              label="Pangkat"
+              reference="pangkat"
+              sort={{ field: "id", order: "ASC" }}
+              filter={{
+                jenjang_kepangkatan_id: formData.jenjang_kepangkatan_id
+              }}
+              {...rest}
+            >
+              <SelectInput optionText="nama" />
+            </ReferenceInput>
+          )
+        }
+      </FormDataConsumer>
+      <FormDataConsumer>
+        {({ formData, ...rest }) =>
+          formData.jenis_personel_id &&
+          formData.jenis_personel_id === 1 &&
+          formData.pangkat_id && (
+            <ReferenceInput
+              source="kecabangan_id"
+              label="Kecabangan"
+              reference="kecabangan"
+              sort={{ field: "id", order: "ASC" }}
+              {...rest}
+            >
+              <SelectInput optionText="kode" />
             </ReferenceInput>
           )
         }

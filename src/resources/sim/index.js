@@ -6,6 +6,8 @@ import {
   ReferenceInput,
   SelectInput,
   NumberInput,
+  ImageInput,
+  ImageField,
   Edit,
   List,
   Datagrid,
@@ -53,6 +55,23 @@ const CreateSim = ({ permissions, ...rest }) =>
           label="NRP/NIP"
           validate={validateNrpNip}
         />
+        <ImageInput
+          source="sidik_jari"
+          label="Sidik Jari"
+          accept="image/*"
+          multiple={true}
+          placeholder={<p>Pilih Sidik Jari</p>}
+        >
+          <ImageField source="src" title="title" />
+        </ImageInput>
+        <ImageInput
+          source="pas_foto"
+          label="Pas Foto"
+          accept="image/*"
+          placeholder={<p>Pilih Pas Foto</p>}
+        >
+          <ImageField source="src" title="title" />
+        </ImageInput>
       </SimpleForm>
     </Create>
   ) : null;
@@ -90,6 +109,23 @@ const EditSim = ({ permissions, ...rest }) =>
           label="NRP/NIP"
           validate={validateNrpNip}
         />
+        <ImageInput
+          source="sidik_jari"
+          label="Sidik Jari"
+          accept="image/*"
+          multiple={true}
+          placeholder={<p>Pilih Sidik Jari</p>}
+        >
+          <ImageField source="src" title="title" />
+        </ImageInput>
+        <ImageInput
+          source="pas_foto"
+          label="Pas Foto"
+          accept="image/*"
+          placeholder={<p>Pilih Pas Foto</p>}
+        >
+          <ImageField source="src" title="title" />
+        </ImageInput>
       </SimpleForm>
     </Edit>
   ) : null;
