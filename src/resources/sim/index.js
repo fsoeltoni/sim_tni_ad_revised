@@ -22,7 +22,7 @@ const CreateSim = ({ permissions, ...rest }) =>
   permissions ? (
     <Create {...rest} title="SIM">
       <SimpleForm
-        defaultValue={{
+        initialValues={{
           created: moment(),
           updated: moment(),
           berlaku_hingga: moment().add(5, "y"),
@@ -32,6 +32,14 @@ const CreateSim = ({ permissions, ...rest }) =>
         }}
         toolbar={<SimToolbar />}
       >
+        <ReferenceInput
+          source="pengajuan_sim_id"
+          label="Pengajuan SIM"
+          reference="pengajuan_sim"
+          sort={{ field: "id", order: "ASC" }}
+        >
+          <SelectInput optionText="nama" />
+        </ReferenceInput>
         <ReferenceInput
           source="golongan_sim_id"
           label="Golongan SIM"
@@ -53,7 +61,7 @@ const EditSim = ({ permissions, ...rest }) =>
   permissions ? (
     <Edit {...rest} title="SIM">
       <SimpleForm
-        defaultValue={{
+        initialValues={{
           updated: moment(),
           lingkup_id: permissions.lingkup_id,
           penyelenggara: permissions.penyelenggara_id,
@@ -61,6 +69,14 @@ const EditSim = ({ permissions, ...rest }) =>
         }}
         toolbar={<SimToolbar />}
       >
+        <ReferenceInput
+          source="pengajuan_sim_id"
+          label="Pengajuan SIM"
+          reference="pengajuan_sim"
+          sort={{ field: "id", order: "ASC" }}
+        >
+          <SelectInput optionText="nama" />
+        </ReferenceInput>
         <ReferenceInput
           source="golongan_sim_id"
           label="Golongan SIM"
@@ -92,12 +108,20 @@ const ListSim = ({ permissions, ...rest }) =>
           <TextField source="nama" />
         </ReferenceField>
         <ReferenceField
+          source="pengajuan_sim_id"
+          label="Pengajuan SIM"
+          reference="pengajuan_sim"
+        >
+          <TextField source="nama" />
+        </ReferenceField>
+        <ReferenceField
           source="golongan_sim_id"
           label="Golongan SIM"
           reference="golongan_sim"
         >
           <TextField source="nama" />
         </ReferenceField>
+
         <EditButton />
         <DeleteButton />
       </Datagrid>
