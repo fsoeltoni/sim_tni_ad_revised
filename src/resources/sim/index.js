@@ -19,6 +19,7 @@ import {
 import FormattedDateField from "../../helpers/components/FormattedDateField";
 import SimToolbar from "./helpers/components/SimToolbar";
 import validateNrpNip from "../../helpers/components/validations/validateNrpNip";
+import SignaturePadInput from "../../helpers/components/inputs/SignaturePadInput";
 
 const CreateSim = ({ permissions, ...rest }) =>
   permissions ? (
@@ -72,6 +73,7 @@ const CreateSim = ({ permissions, ...rest }) =>
         >
           <ImageField source="src" title="title" />
         </ImageInput>
+        <SignaturePadInput />
       </SimpleForm>
     </Create>
   ) : null;
@@ -126,6 +128,7 @@ const EditSim = ({ permissions, ...rest }) =>
         >
           <ImageField source="src" title="title" />
         </ImageInput>
+        <SignaturePadInput />
       </SimpleForm>
     </Edit>
   ) : null;
