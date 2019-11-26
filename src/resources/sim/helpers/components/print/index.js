@@ -5,6 +5,7 @@ import { Title } from "react-admin";
 import { useDataProvider } from "ra-core";
 import moment from "moment";
 import monthToRoman from "../../monthToRoman";
+import SimCanvas from "./SimCanvas";
 
 const SimPrint = ({
   match: {
@@ -99,25 +100,25 @@ const SimPrint = ({
 
   const display_kode_sim_kode_sim_penyelenggara_kode = penyelenggara
     ? penyelenggara.kode
-    : "";
+    : null;
   const display_kode_sim_no_urut_sim = sim
     ? "." + sim.id.toString().padStart(4, "0")
-    : "";
+    : null;
   const display_kode_sim_tanggal_lahir = personel
     ? "." + moment(personel.tanggal_lahir).format("MMYY")
-    : "";
+    : null;
   const display_kode_sim_golongan_sim_nama = golongan_sim
     ? "/" + golongan_sim.nama
-    : "";
+    : null;
   const display_kode_sim_pengajuan_sim_kode = pengajuan_sim
     ? "." + pengajuan_sim.kode
-    : "";
+    : null;
   const display_kode_sim_tanggal_pembuatan_sim = sim
     ? "/" +
       monthToRoman(moment(sim.created).format("M")) +
       "/" +
       moment(sim.created).format("YYYY")
-    : "";
+    : null;
 
   const display_kode_sim =
     display_kode_sim_kode_sim_penyelenggara_kode +
@@ -127,35 +128,35 @@ const SimPrint = ({
     display_kode_sim_pengajuan_sim_kode +
     display_kode_sim_tanggal_pembuatan_sim;
 
-  const display_nama = personel ? personel.nama : "";
-  const display_tempat_lahir = tempat_lahir ? tempat_lahir.nama : "";
+  const display_nama = personel ? personel.nama : null;
+  const display_tempat_lahir = tempat_lahir ? tempat_lahir.nama : null;
   const display_tanggal_lahir = personel
     ? moment(personel.tanggal_lahir).format("DD-MM-YYYY")
-    : "";
+    : null;
   const display_tempat_tanggal_lahir =
     display_tempat_lahir + "/" + display_tanggal_lahir;
-  const display_pangkat = pangkat ? pangkat.kode : "";
-  const display_korps = korps ? korps.kode : "";
-  const display_nrp_nip = personel ? personel.nrp_nip : "";
+  const display_pangkat = pangkat ? pangkat.kode : null;
+  const display_korps = korps ? korps.kode : null;
+  const display_nrp_nip = personel ? personel.nrp_nip : null;
   const display_pangkat_korps_nrp_nip =
     display_pangkat + " " + display_korps + "/" + display_nrp_nip;
-  const display_kesatuan = kesatuan ? kesatuan.kode : "";
-  const display_golongan_darah = golongan_darah ? golongan_darah.nama : "";
-  const display_diberikan_di = markas ? markas.nama : "";
+  const display_kesatuan = kesatuan ? kesatuan.kode : null;
+  const display_golongan_darah = golongan_darah ? golongan_darah.nama : null;
+  const display_diberikan_di = markas ? markas.nama : null;
   const display_pada_tanggal = sim
     ? moment(sim.created).format("DD-MM-YYYY")
-    : "";
+    : null;
   const display_berlaku_hingga = sim
     ? moment(sim.berlaku_hingga).format("DD-MM-YYYY")
-    : "";
+    : null;
 
-  const display_label_komandan = lingkup ? lingkup.label_komandan : "";
-  const display_nama_komandan = komandan ? komandan.nama : "";
+  const display_label_komandan = lingkup ? lingkup.label_komandan : null;
+  const display_nama_komandan = komandan ? komandan.nama : null;
   const display_pangkat_komandan = pangkat_komandan
     ? pangkat_komandan.kode
-    : "";
-  const display_korps_komandan = korps_komandan ? korps_komandan.kode : "";
-  const display_nrp_komandan = komandan ? komandan.nrp_nip : "";
+    : null;
+  const display_korps_komandan = korps_komandan ? korps_komandan.kode : null;
+  const display_nrp_komandan = komandan ? komandan.nrp_nip : null;
   const display_pangkat_korps_nrp_komandan =
     display_pangkat_komandan +
     " " +
@@ -166,7 +167,22 @@ const SimPrint = ({
   return (
     <Card>
       <Title title="Cetak SIM" />
-      <CardContent>...</CardContent>
+      <CardContent>
+        <SimCanvas
+          no_sim={display_kode_sim}
+          nama={display_nama}
+          tempat_tanggal_lahir={display_tempat_tanggal_lahir}
+          pangkat_korps_nrp_nip={display_pangkat_korps_nrp_nip}
+          kesatuan={display_kesatuan}
+          golongan_darah={display_golongan_darah}
+          diberikan_di={display_diberikan_di}
+          pada_tanggal={display_pada_tanggal}
+          berlaku_hingga={display_berlaku_hingga}
+          label_komandan={display_label_komandan}
+          nama_komandan={display_nama_komandan}
+          pangkat_korps_nrp_komandan={display_pangkat_korps_nrp_komandan}
+        />
+      </CardContent>
     </Card>
   );
 };
