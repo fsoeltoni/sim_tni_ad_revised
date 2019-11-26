@@ -23,13 +23,20 @@ import provinsi from "./resources/provinsi";
 import jenis_kota_kabupaten from "./resources/jenis_kota_kabupaten";
 import kota_kabupaten from "./resources/kota_kabupaten";
 import jenis_pomdam from "./resources/jenis_pomdam";
+import route from "./providers/route";
 
 const title = attrs.title;
 const dataProvider = mockDataServer;
 const authProvider = auth;
+const customRoutes = route;
 
 const App = () => (
-  <Admin title={title} dataProvider={dataProvider} authProvider={authProvider}>
+  <Admin
+    title={title}
+    dataProvider={dataProvider}
+    authProvider={authProvider}
+    customRoutes={customRoutes}
+  >
     <Resource name="sim" options={{ label: "SIM" }} {...sim} />
     <Resource
       name="golongan_sim"

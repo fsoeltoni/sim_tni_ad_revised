@@ -5,6 +5,7 @@ import { mockDataServer } from "../../../../providers/data";
 
 const SimSaveButton = ({ handleSubmitWithRedirect, ...rest }) => {
   const form = useForm();
+  const redirect = (basePath, id, data) => `${basePath}/print/${id}`;
 
   const handleClick = useCallback(() => {
     mockDataServer
@@ -17,7 +18,7 @@ const SimSaveButton = ({ handleSubmitWithRedirect, ...rest }) => {
       })
       .then(res => {
         form.change("personel_id", res.data[0].id);
-        handleSubmitWithRedirect("list");
+        handleSubmitWithRedirect(redirect);
       });
   }, [form, handleSubmitWithRedirect]);
 

@@ -29,7 +29,7 @@ const CreateSim = ({ permissions, ...rest }) =>
           updated: moment(),
           berlaku_hingga: moment().add(5, "y"),
           lingkup_id: permissions.lingkup_id,
-          penyelenggara: permissions.penyelenggara_id,
+          penyelenggara_id: permissions.penyelenggara_id,
           pengguna_id: permissions.id
         }}
         toolbar={<SimToolbar />}
@@ -83,7 +83,7 @@ const EditSim = ({ permissions, ...rest }) =>
         initialValues={{
           updated: moment(),
           lingkup_id: permissions.lingkup_id,
-          penyelenggara: permissions.penyelenggara_id,
+          penyelenggara_id: permissions.penyelenggara_id,
           pengguna_id: permissions.id
         }}
         toolbar={<SimToolbar />}
