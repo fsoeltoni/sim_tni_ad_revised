@@ -195,7 +195,8 @@ class SimCanvas extends Component {
       nama_komandan,
       pangkat_korps_nrp_nip_komandan,
       no_urut_sim,
-      tanda_tangan
+      tanda_tangan,
+      pas_foto
     } = this.props;
 
     return (

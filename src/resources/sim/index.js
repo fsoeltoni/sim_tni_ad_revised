@@ -14,7 +14,9 @@ import {
   ReferenceField,
   TextField,
   EditButton,
-  DeleteButton
+  DeleteButton,
+  TabbedForm,
+  FormTab
 } from "react-admin";
 import FormattedDateField from "../../helpers/components/FormattedDateField";
 import SimToolbar from "./helpers/components/SimToolbar";
@@ -24,7 +26,7 @@ import SignaturePadInput from "../../helpers/components/inputs/SignaturePadInput
 const CreateSim = ({ permissions, ...rest }) =>
   permissions ? (
     <Create {...rest} title="SIM">
-      <SimpleForm
+      <TabbedForm
         initialValues={{
           created: moment(),
           updated: moment(),
@@ -35,47 +37,55 @@ const CreateSim = ({ permissions, ...rest }) =>
         }}
         toolbar={<SimToolbar />}
       >
-        <ReferenceInput
-          source="pengajuan_sim_id"
-          label="Pengajuan SIM"
-          reference="pengajuan_sim"
-          sort={{ field: "id", order: "ASC" }}
-        >
-          <SelectInput optionText="nama" />
-        </ReferenceInput>
-        <ReferenceInput
-          source="golongan_sim_id"
-          label="Golongan SIM"
-          reference="golongan_sim"
-          sort={{ field: "id", order: "ASC" }}
-        >
-          <SelectInput optionText="nama" />
-        </ReferenceInput>
-        <NumberInput
-          source="nrp_nip"
-          label="NRP/NIP"
-          validate={validateNrpNip}
-        />
-        <ImageInput
-          source="sidik_jari"
-          label="Sidik Jari"
-          accept="image/*"
-          multiple={true}
-          placeholder={<p>Pilih Sidik Jari</p>}
-        >
-          <ImageField source="src" title="title" />
-        </ImageInput>
-        <ImageInput
-          source="pas_foto"
-          label="Pas Foto"
-          accept="image/*"
-          multiple={false}
-          placeholder={<p>Pilih Pas Foto</p>}
-        >
-          <ImageField source="src" title="title" />
-        </ImageInput>
-        <SignaturePadInput />
-      </SimpleForm>
+        <FormTab label="Keterangan">
+          <ReferenceInput
+            source="pengajuan_sim_id"
+            label="Pengajuan SIM"
+            reference="pengajuan_sim"
+            sort={{ field: "id", order: "ASC" }}
+          >
+            <SelectInput optionText="nama" />
+          </ReferenceInput>
+          <ReferenceInput
+            source="golongan_sim_id"
+            label="Golongan SIM"
+            reference="golongan_sim"
+            sort={{ field: "id", order: "ASC" }}
+          >
+            <SelectInput optionText="nama" />
+          </ReferenceInput>
+          <NumberInput
+            source="nrp_nip"
+            label="NRP/NIP"
+            validate={validateNrpNip}
+          />
+        </FormTab>
+        <FormTab label="Sidik Jari">
+          <ImageInput
+            source="sidik_jari"
+            label="Sidik Jari"
+            accept="image/*"
+            multiple={true}
+            placeholder={<p>Pilih Sidik Jari</p>}
+          >
+            <ImageField source="src" title="title" />
+          </ImageInput>
+        </FormTab>
+        <FormTab label="Pas Foto">
+          <ImageInput
+            source="pas_foto"
+            label="Pas Foto"
+            accept="image/*"
+            multiple={false}
+            placeholder={<p>Pilih Pas Foto</p>}
+          >
+            <ImageField source="src" title="title" />
+          </ImageInput>
+        </FormTab>
+        <FormTab label="Tanda Tangan">
+          <SignaturePadInput />
+        </FormTab>
+      </TabbedForm>
     </Create>
   ) : null;
 
@@ -137,7 +147,12 @@ const EditSim = ({ permissions, ...rest }) =>
 
 const ListSim = ({ permissions, ...rest }) =>
   permissions ? (
-    <List {...rest} title="SIM" sort={{ field: "created", order: "DESC" }}>
+    <List
+      {...rest}
+      title="SIM"
+      sort={{ field: "created", order: "DESC" }}
+      filterDefaultValues={{ penyelenggara_id: permissions.penyelenggara_id }}
+    >
       <Datagrid>
         <FormattedDateField source="created" label="Dibuat" />
         <FormattedDateField source="berlaku_hingga" label="Berlaku Hingga" />
