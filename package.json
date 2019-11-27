@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "image-to-base64": "^2.0.1",
     "jsbarcode": "^3.11.0",
     "konva": "^4.0.18",
     "moment": "^2.24.0",
@@ -11,9 +12,11 @@
     "react": "^16.12.0",
     "react-admin": "^3.0.0",
     "react-dom": "^16.12.0",
+    "react-image": "^2.2.1",
     "react-konva": "^16.10.1-0",
     "react-moment": "^0.9.6",
     "react-scripts": "3.2.0",
+    "react-timeout": "^1.2.0",
     "react-to-print": "^2.5.0"
   },
   "scripts": {

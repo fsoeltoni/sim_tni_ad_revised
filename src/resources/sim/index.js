@@ -69,6 +69,7 @@ const CreateSim = ({ permissions, ...rest }) =>
           source="pas_foto"
           label="Pas Foto"
           accept="image/*"
+          multiple={false}
           placeholder={<p>Pilih Pas Foto</p>}
         >
           <ImageField source="src" title="title" />
@@ -124,6 +125,7 @@ const EditSim = ({ permissions, ...rest }) =>
           source="pas_foto"
           label="Pas Foto"
           accept="image/*"
+          multiple={false}
           placeholder={<p>Pilih Pas Foto</p>}
         >
           <ImageField source="src" title="title" />

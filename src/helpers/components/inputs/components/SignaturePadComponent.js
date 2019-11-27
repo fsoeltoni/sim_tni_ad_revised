@@ -21,7 +21,7 @@ class SignaturePadComponent extends Component {
       imageX: canvas.width,
       imageY: canvas.height,
       imageTransparency: true,
-      imageScaling: false,
+      imageScaling: true,
       maxUpScalePercent: 0.0,
       rawDataFormat: "ENC",
       minSigPoints: 25
@@ -66,9 +66,9 @@ class SignaturePadComponent extends Component {
     const ctx = canvas.getContext("2d");
 
     if (
-      obj.errorMsg != null &&
-      obj.errorMsg != "" &&
-      obj.errorMsg != "undefined"
+      obj.errorMsg !== null &&
+      obj.errorMsg !== "" &&
+      obj.errorMsg !== "undefined"
     ) {
       alert(obj.errorMsg);
     } else {
@@ -84,7 +84,6 @@ class SignaturePadComponent extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <Card>
         <CardContent>

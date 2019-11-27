@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { Title } from "react-admin";
@@ -6,6 +6,8 @@ import { useDataProvider } from "ra-core";
 import moment from "moment";
 import monthToRoman from "../../monthToRoman";
 import SimCanvas from "./SimCanvas";
+import { CardActions, Button } from "@material-ui/core";
+import ReactToPrint from "react-to-print";
 
 const SimPrint = ({
   match: {
@@ -96,7 +98,7 @@ const SimPrint = ({
 
       setSim(data);
     });
-  }, []);
+  }, [dataProvider, id]);
 
   const display_kode_sim_kode_sim_penyelenggara_kode = penyelenggara
     ? penyelenggara.kode
@@ -163,26 +165,56 @@ const SimPrint = ({
     display_korps_komandan +
     "/" +
     display_nrp_komandan;
+  const display_tanda_tangan = sim ? sim.tanda_tangan : null;
+
+  const componentRef = useRef();
 
   return (
     <Card>
       <Title title="Cetak SIM" />
       <CardContent>
-        <SimCanvas
-          no_sim={display_kode_sim}
-          nama={display_nama}
-          tempat_tanggal_lahir={display_tempat_tanggal_lahir}
-          pangkat_korps_nrp_nip={display_pangkat_korps_nrp_nip}
-          kesatuan={display_kesatuan}
-          golongan_darah={display_golongan_darah}
-          diberikan_di={display_diberikan_di}
-          pada_tanggal={display_pada_tanggal}
-          berlaku_hingga={display_berlaku_hingga}
-          label_komandan={display_label_komandan}
-          nama_komandan={display_nama_komandan}
-          pangkat_korps_nrp_komandan={display_pangkat_korps_nrp_komandan}
-        />
+        {display_kode_sim &&
+          display_nama &&
+          display_tempat_tanggal_lahir &&
+          display_pangkat_korps_nrp_nip &&
+          display_kesatuan &&
+          display_golongan_darah &&
+          display_diberikan_di &&
+          display_pada_tanggal &&
+          display_berlaku_hingga &&
+          display_label_komandan &&
+          display_nama_komandan &&
+          display_pangkat_korps_nrp_komandan &&
+          display_tanda_tangan && (
+            <SimCanvas
+              ref={componentRef}
+              no_sim={display_kode_sim}
+              nama={display_nama}
+              tempat_tanggal_lahir={display_tempat_tanggal_lahir}
+              pangkat_korps_nrp_nip={display_pangkat_korps_nrp_nip}
+              kesatuan={display_kesatuan}
+              golongan_darah={display_golongan_darah}
+              diberikan_di={display_diberikan_di}
+              pada_tanggal={display_pada_tanggal}
+              berlaku_hingga={display_berlaku_hingga}
+              label_komandan={display_label_komandan}
+              nama_komandan={display_nama_komandan}
+              pangkat_korps_nrp_komandan={display_pangkat_korps_nrp_komandan}
+              no_urut_sim={display_kode_sim_no_urut_sim}
+              tanda_tangan={display_tanda_tangan}
+            />
+          )}
       </CardContent>
+      <CardActions>
+        <ReactToPrint
+          trigger={() => (
+            <Button variant="contained" color="primary">
+              Cetak
+            </Button>
+          )}
+          content={() => componentRef.current}
+        />
+      </CardActions>
     </Card>
   );
 };
