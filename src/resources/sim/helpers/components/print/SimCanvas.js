@@ -149,6 +149,7 @@ class SimCanvas extends Component {
 
     this.loadBarcode(sim_id);
     this.loadSignature();
+    this.loadSidikJari();
   };
 
   loadBarcode = no_urut_sim => {
@@ -182,6 +183,20 @@ class SimCanvas extends Component {
   handleLoadSignature = () => {
     this.setState({
       signature: this.signature
+    });
+  };
+
+  loadSidikJari = () => {
+    const { sidik_jari } = this.props;
+    this.sidik_jari = new window.Image();
+    this.sidik_jari.src = sidik_jari;
+
+    this.sidik_jari.addEventListener("load", this.handleLoadSidikJari);
+  };
+
+  handleLoadSidikJari = () => {
+    this.setState({
+      sidik_jari: this.sidik_jari
     });
   };
 
@@ -238,6 +253,13 @@ class SimCanvas extends Component {
             />
             <PasFoto x={140} y={150} />
             <Image x={135} y={220} image={this.state.barcode}></Image>
+            <Image
+              x={10}
+              y={150}
+              image={this.state.sidik_jari}
+              width={50}
+              height={50}
+            ></Image>
             <Image
               x={-50}
               y={200}

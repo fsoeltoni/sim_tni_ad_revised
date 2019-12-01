@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardActions, Button } from "@material-ui/core";
-import { Title } from "react-admin";
-import { useDataProvider } from "ra-core";
+import { Title, useDataProvider } from "react-admin";
 import moment from "moment";
 import monthToRoman from "../../monthToRoman";
 import SimCanvas from "./SimCanvas";
@@ -10,8 +9,7 @@ import ReactToPrint from "react-to-print";
 const SimPrint = ({
   match: {
     params: { id }
-  },
-  ...rest
+  }
 }) => {
   const dataProvider = useDataProvider();
   const [sim, setSim] = useState();
@@ -165,6 +163,7 @@ const SimPrint = ({
     "/" +
     display_nrp_komandan;
   const display_tanda_tangan = sim ? sim.tanda_tangan : null;
+  const display_sidik_jari = sim ? sim.sidik_jari[0].src : null;
   const componentRef = useRef();
 
   return (
@@ -203,6 +202,7 @@ const SimPrint = ({
               }
               no_urut_sim={display_kode_sim_no_urut_sim}
               tanda_tangan={display_tanda_tangan}
+              sidik_jari={display_sidik_jari}
             />
           )}
       </CardContent>
