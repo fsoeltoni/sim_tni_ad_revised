@@ -98,6 +98,7 @@ const SimPrint = ({
     });
   }, [dataProvider, id]);
 
+  const display_sim_id = sim ? sim.id : null;
   const display_kode_sim_kode_sim_penyelenggara_kode = penyelenggara
     ? penyelenggara.kode
     : null;
@@ -164,14 +165,14 @@ const SimPrint = ({
     "/" +
     display_nrp_komandan;
   const display_tanda_tangan = sim ? sim.tanda_tangan : null;
-
   const componentRef = useRef();
 
   return (
     <Card>
       <Title title="Cetak SIM" />
       <CardContent>
-        {display_kode_sim &&
+        {display_sim_id &&
+          display_kode_sim &&
           display_nama &&
           display_tempat_tanggal_lahir &&
           display_pangkat_korps_nrp_nip &&
@@ -182,10 +183,10 @@ const SimPrint = ({
           display_berlaku_hingga &&
           display_label_komandan &&
           display_nama_komandan &&
-          display_pangkat_korps_nrp_komandan &&
-          display_tanda_tangan && (
+          display_pangkat_korps_nrp_komandan && (
             <SimCanvas
               ref={componentRef}
+              sim_id={display_sim_id}
               no_sim={display_kode_sim}
               nama={display_nama}
               tempat_tanggal_lahir={display_tempat_tanggal_lahir}
@@ -197,7 +198,9 @@ const SimPrint = ({
               berlaku_hingga={display_berlaku_hingga}
               label_komandan={display_label_komandan}
               nama_komandan={display_nama_komandan}
-              pangkat_korps_nrp_komandan={display_pangkat_korps_nrp_komandan}
+              pangkat_korps_nrp_nip_komandan={
+                display_pangkat_korps_nrp_komandan
+              }
               no_urut_sim={display_kode_sim_no_urut_sim}
               tanda_tangan={display_tanda_tangan}
             />

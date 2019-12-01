@@ -5,7 +5,7 @@ import JsBarcode from "jsbarcode";
 const NoSim = ({ x, y, content }) => (
   <Group x={x} y={y}>
     <Text text="SIM TNI NO : " fontStyle="bold" />
-    <Text x={80} text={content} />
+    <Text x={80} text={content} fontSize={10} />
   </Group>
 );
 
@@ -52,24 +52,24 @@ const GolonganDarah = ({ y, content }) => (
 const DiberikanDi = ({ y, content }) => (
   <Group y={y}>
     <Text text="Diberikan di" fontSize={11} />
-    <Text x={90} text=":" fontSize={11} />
-    <Text x={100} text={content} fontSize={11} />
+    <Text x={80} text=":" fontSize={11} />
+    <Text x={90} text={content} fontSize={11} />
   </Group>
 );
 
 const PadaTanggal = ({ y, content }) => (
   <Group y={y}>
     <Text text="Pada tanggal" fontSize={11} />
-    <Text x={90} text=":" fontSize={11} />
-    <Text x={100} text={content} fontSize={11} />
+    <Text x={80} text=":" fontSize={11} />
+    <Text x={90} text={content} fontSize={11} />
   </Group>
 );
 
 const BerlakuHingga = ({ y, content }) => (
   <Group y={y}>
     <Text text="Berlaku hingga" fontSize={11} />
-    <Text x={90} text=":" fontSize={11} />
-    <Text x={100} text={content} fontSize={11} />
+    <Text x={80} text=":" fontSize={11} />
+    <Text x={90} text={content} fontSize={11} />
   </Group>
 );
 
@@ -132,8 +132,8 @@ const Komandan = ({
 }) => (
   <Group x={x} y={y}>
     <LabelKomandan y={0} content={label_komandan} />
-    <NamaKomandan y={40} content={nama_komandan} />
-    <PangkatKorpsNrpKomandan y={50} content={pangkat_korps_nrp_nip_komandan} />
+    <NamaKomandan y={25} content={nama_komandan} />
+    <PangkatKorpsNrpKomandan y={40} content={pangkat_korps_nrp_nip_komandan} />
   </Group>
 );
 
@@ -145,8 +145,9 @@ class SimCanvas extends Component {
   state = {};
 
   componentDidMount = () => {
-    const { no_urut_sim } = this.props;
-    this.loadBarcode(no_urut_sim);
+    const { sim_id } = this.props;
+
+    this.loadBarcode(sim_id);
     this.loadSignature();
   };
 
@@ -155,7 +156,7 @@ class SimCanvas extends Component {
 
     JsBarcode(this.barcode, no_urut_sim, {
       width: 1,
-      height: 10,
+      height: 14,
       background: "transparent",
       displayValue: false
     });
@@ -199,7 +200,6 @@ class SimCanvas extends Component {
       nama_komandan,
       pangkat_korps_nrp_nip_komandan
     } = this.props;
-
     return (
       <div>
         <Stage width={500} height={300}>
@@ -223,21 +223,21 @@ class SimCanvas extends Component {
               golongan_darah={golongan_darah}
             />
             <KeteranganSim
-              x={230}
-              y={140}
+              x={220}
+              y={150}
               diberikan_di={diberikan_di}
               pada_tanggal={pada_tanggal}
               berlaku_hingga={berlaku_hingga}
             />
             <Komandan
-              x={250}
-              y={185}
+              x={240}
+              y={195}
               label_komandan={label_komandan}
               nama_komandan={nama_komandan}
               pangkat_korps_nrp_nip_komandan={pangkat_korps_nrp_nip_komandan}
             />
-            <PasFoto x={140} y={140} />
-            <Image x={140} y={220} image={this.state.barcode}></Image>
+            <PasFoto x={140} y={150} />
+            <Image x={135} y={220} image={this.state.barcode}></Image>
             <Image
               x={-50}
               y={200}
