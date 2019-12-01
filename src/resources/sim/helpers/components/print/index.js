@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+import { Card, CardContent, CardActions, Button } from "@material-ui/core";
 import { Title } from "react-admin";
 import { useDataProvider } from "ra-core";
 import moment from "moment";
 import monthToRoman from "../../monthToRoman";
 import SimCanvas from "./SimCanvas";
-import { CardActions, Button } from "@material-ui/core";
 import ReactToPrint from "react-to-print";
 
 const SimPrint = ({

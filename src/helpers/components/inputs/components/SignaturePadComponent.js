@@ -17,7 +17,7 @@ class SignaturePadComponent extends Component {
       lastName: "",
       eMail: "",
       location: "",
-      imageFormat: 1,
+      imageFormat: 2,
       imageX: canvas.width,
       imageY: canvas.height,
       imageTransparency: true,
@@ -91,8 +91,8 @@ class SignaturePadComponent extends Component {
             ref="canvas"
             id="cnv"
             name="cnv"
-            width="500"
-            height="100"
+            width="250"
+            height="50"
           ></canvas>
         </CardContent>
         <CardActions>

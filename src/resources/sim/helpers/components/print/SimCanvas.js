@@ -138,7 +138,7 @@ const Komandan = ({
 );
 
 const PasFoto = ({ x, y }) => (
-  <Image x={x} y={y} width={85} height={105} fill="white" />
+  <Image x={x} y={y} width={60} height={75} fill="white" />
 );
 
 class SimCanvas extends Component {
@@ -152,31 +152,35 @@ class SimCanvas extends Component {
 
   loadBarcode = no_urut_sim => {
     this.barcode = new window.Image();
+
     JsBarcode(this.barcode, no_urut_sim, {
       width: 1,
       height: 10,
       background: "transparent",
       displayValue: false
     });
+
     this.barcode.addEventListener("load", this.handleLoadBarcode);
+  };
+
+  handleLoadBarcode = () => {
+    this.setState({
+      barcode: this.barcode
+    });
   };
 
   loadSignature = () => {
     const { tanda_tangan } = this.props;
+
     this.signature = new window.Image();
     this.signature.src = tanda_tangan;
+
     this.signature.addEventListener("load", this.handleLoadSignature);
   };
 
   handleLoadSignature = () => {
     this.setState({
       signature: this.signature
-    });
-  };
-
-  handleLoadBarcode = () => {
-    this.setState({
-      barcode: this.barcode
     });
   };
 
@@ -193,10 +197,7 @@ class SimCanvas extends Component {
       berlaku_hingga,
       label_komandan,
       nama_komandan,
-      pangkat_korps_nrp_nip_komandan,
-      no_urut_sim,
-      tanda_tangan,
-      pas_foto
+      pangkat_korps_nrp_nip_komandan
     } = this.props;
 
     return (
@@ -208,7 +209,7 @@ class SimCanvas extends Component {
               y={0}
               width={400}
               height={250}
-              fill="white"
+              fill="blue"
               shadowBlur={5}
             />
             <NoSim x={80} y={40} content={no_sim} />
@@ -236,13 +237,14 @@ class SimCanvas extends Component {
               pangkat_korps_nrp_nip_komandan={pangkat_korps_nrp_nip_komandan}
             />
             <PasFoto x={140} y={140} />
+            <Image x={140} y={220} image={this.state.barcode}></Image>
             <Image
-              y={170}
-              width={250}
-              height={50}
+              x={-50}
+              y={200}
+              width={200}
+              height={40}
               image={this.state.signature}
             ></Image>
-            <Image x={100} y={220} image={this.state.barcode}></Image>
           </Layer>
         </Stage>
       </div>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Field } from "react-final-form";
 import SignaturePadComponent from "./components/SignaturePadComponent";
 
