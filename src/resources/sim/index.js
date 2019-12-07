@@ -22,6 +22,8 @@ import FormattedDateField from "../../helpers/components/FormattedDateField";
 import SimToolbar from "./helpers/components/SimToolbar";
 import validateNrpNip from "../../helpers/components/validations/validateNrpNip";
 import SignaturePadInput from "../../helpers/components/inputs/SignaturePadInput";
+import BarcodeReader from "react-barcode-reader";
+import CameraInput from "../../helpers/input/CameraInput";
 
 const CreateSim = ({ permissions, ...rest }) =>
   permissions ? (
@@ -72,15 +74,7 @@ const CreateSim = ({ permissions, ...rest }) =>
           </ImageInput>
         </FormTab>
         <FormTab label="Pas Foto">
-          <ImageInput
-            source="pas_foto"
-            label="Pas Foto"
-            accept="image/*"
-            multiple={false}
-            placeholder={<p>Pilih Pas Foto</p>}
-          >
-            <ImageField source="src" title="title" />
-          </ImageInput>
+          <CameraInput />
         </FormTab>
         <FormTab label="Tanda Tangan">
           <SignaturePadInput />
@@ -145,44 +139,51 @@ const EditSim = ({ permissions, ...rest }) =>
     </Edit>
   ) : null;
 
-const ListSim = ({ permissions, ...rest }) =>
-  permissions ? (
-    <List
-      {...rest}
-      title="SIM"
-      sort={{ field: "created", order: "DESC" }}
-      filterDefaultValues={{ penyelenggara_id: permissions.penyelenggara_id }}
-    >
-      <Datagrid>
-        <FormattedDateField source="created" label="Dibuat" />
-        <FormattedDateField source="berlaku_hingga" label="Berlaku Hingga" />
-        <ReferenceField
-          source="personel_id"
-          label="Personel"
-          reference="personel"
-        >
-          <TextField source="nama" />
-        </ReferenceField>
-        <ReferenceField
-          source="pengajuan_sim_id"
-          label="Pengajuan SIM"
-          reference="pengajuan_sim"
-        >
-          <TextField source="nama" />
-        </ReferenceField>
-        <ReferenceField
-          source="golongan_sim_id"
-          label="Golongan SIM"
-          reference="golongan_sim"
-        >
-          <TextField source="nama" />
-        </ReferenceField>
+const ListSim = ({ permissions, ...rest }) => {
+  return permissions ? (
+    <div>
+      <BarcodeReader
+        onError={error => console.log(error)}
+        onScan={() => console.log("SCANNED")}
+      />
+      <List
+        {...rest}
+        title="SIM"
+        sort={{ field: "created", order: "DESC" }}
+        filterDefaultValues={{ penyelenggara_id: permissions.penyelenggara_id }}
+      >
+        <Datagrid>
+          <FormattedDateField source="created" label="Dibuat" />
+          <FormattedDateField source="berlaku_hingga" label="Berlaku Hingga" />
+          <ReferenceField
+            source="personel_id"
+            label="Personel"
+            reference="personel"
+          >
+            <TextField source="nama" />
+          </ReferenceField>
+          <ReferenceField
+            source="pengajuan_sim_id"
+            label="Pengajuan SIM"
+            reference="pengajuan_sim"
+          >
+            <TextField source="nama" />
+          </ReferenceField>
+          <ReferenceField
+            source="golongan_sim_id"
+            label="Golongan SIM"
+            reference="golongan_sim"
+          >
+            <TextField source="nama" />
+          </ReferenceField>
 
-        <EditButton />
-        <DeleteButton />
-      </Datagrid>
-    </List>
+          <EditButton />
+          <DeleteButton />
+        </Datagrid>
+      </List>
+    </div>
   ) : null;
+};
 
 export default {
   create: CreateSim,

@@ -5,6 +5,7 @@ import moment from "moment";
 import monthToRoman from "../../monthToRoman";
 import SimCanvas from "./SimCanvas";
 import ReactToPrint from "react-to-print";
+import image2base64 from "image-to-base64";
 
 const SimPrint = ({
   match: {
@@ -164,8 +165,9 @@ const SimPrint = ({
     display_nrp_komandan;
   const display_tanda_tangan = sim ? sim.tanda_tangan : null;
   const display_sidik_jari = sim ? sim.sidik_jari[0].src : null;
-  const componentRef = useRef();
+  const display_pas_foto = sim ? sim.pas_foto : null;
 
+  const componentRef = useRef();
   return (
     <Card>
       <Title title="Cetak SIM" />
@@ -203,6 +205,7 @@ const SimPrint = ({
               no_urut_sim={display_kode_sim_no_urut_sim}
               tanda_tangan={display_tanda_tangan}
               sidik_jari={display_sidik_jari}
+              pas_foto={display_pas_foto}
             />
           )}
       </CardContent>

@@ -4,90 +4,95 @@ import JsBarcode from "jsbarcode";
 
 const NoSim = ({ x, y, content }) => (
   <Group x={x} y={y}>
-    <Text text="SIM TNI NO : " fontStyle="bold" />
-    <Text x={80} text={content} fontSize={10} />
+    <Text
+      x={85}
+      text={content}
+      fontSize={12}
+      fontStyle="bold"
+      fontFamily="Roboto"
+    />
   </Group>
 );
 
 const Nama = ({ y, content }) => (
   <Group y={y}>
-    <Text text="Nama" fontSize={11} />
-    <Text x={100} text=":" fontSize={11} />
-    <Text x={110} text={content} fontSize={11} />
+    <Text text="Nama" fontSize={13} fontFamily="Roboto" />
+    <Text x={110} text=":" fontSize={13} fontFamily="Roboto" />
+    <Text x={120} text={content} fontSize={13} fontFamily="Roboto" />
   </Group>
 );
 
 const TempatTanggalLahir = ({ y, content }) => (
   <Group y={y}>
-    <Text text="Tempat/Tgl. Lahir" fontSize={11} />
-    <Text x={100} text=":" fontSize={11} />
-    <Text x={110} text={content} fontSize={11} />
+    <Text text="Tempat/Tgl. Lahir" fontSize={13} fontFamily="Roboto" />
+    <Text x={110} text=":" fontSize={13} fontFamily="Roboto" />
+    <Text x={120} text={content} fontSize={13} fontFamily="Roboto" />
   </Group>
 );
 
 const PangkatKorpsNrpNip = ({ y, content }) => (
   <Group y={y}>
-    <Text text="Pangkat/NRP/NIP" fontSize={11} />
-    <Text x={100} text=":" fontSize={11} />
-    <Text x={110} text={content} fontSize={11} />
+    <Text text="Pangkat/NRP/NIP" fontSize={13} fontFamily="Roboto" />
+    <Text x={110} text=":" fontSize={13} fontFamily="Roboto" />
+    <Text x={120} text={content} fontSize={13} fontFamily="Roboto" />
   </Group>
 );
 
 const Kesatuan = ({ y, content }) => (
   <Group y={y}>
-    <Text text="Kesatuan" fontSize={11} />
-    <Text x={100} text=":" fontSize={11} />
-    <Text x={110} text={content} fontSize={11} />
+    <Text text="Kesatuan" fontSize={13} fontFamily="Roboto" />
+    <Text x={110} text=":" fontSize={13} fontFamily="Roboto" />
+    <Text x={120} text={content} fontSize={13} fontFamily="Roboto" />
   </Group>
 );
 
 const GolonganDarah = ({ y, content }) => (
   <Group y={y}>
-    <Text text="Golongan darah" fontSize={11} />
-    <Text x={100} text=":" fontSize={11} />
-    <Text x={110} text={content} fontSize={11} />
+    <Text text="Golongan darah" fontSize={13} fontFamily="Roboto" />
+    <Text x={110} text=":" fontSize={13} fontFamily="Roboto" />
+    <Text x={120} text={content} fontSize={13} fontFamily="Roboto" />
   </Group>
 );
 
 const DiberikanDi = ({ y, content }) => (
   <Group y={y}>
-    <Text text="Diberikan di" fontSize={11} />
-    <Text x={80} text=":" fontSize={11} />
-    <Text x={90} text={content} fontSize={11} />
+    <Text text="Diberikan di" fontSize={13} fontFamily="Roboto" />
+    <Text x={90} text=":" fontSize={13} fontFamily="Roboto" />
+    <Text x={100} text={content} fontSize={13} fontFamily="Roboto" />
   </Group>
 );
 
 const PadaTanggal = ({ y, content }) => (
   <Group y={y}>
-    <Text text="Pada tanggal" fontSize={11} />
-    <Text x={80} text=":" fontSize={11} />
-    <Text x={90} text={content} fontSize={11} />
+    <Text text="Pada tanggal" fontSize={13} fontFamily="Roboto" />
+    <Text x={90} text=":" fontSize={13} fontFamily="Roboto" />
+    <Text x={100} text={content} fontSize={13} fontFamily="Roboto" />
   </Group>
 );
 
 const BerlakuHingga = ({ y, content }) => (
   <Group y={y}>
-    <Text text="Berlaku hingga" fontSize={11} />
-    <Text x={80} text=":" fontSize={11} />
-    <Text x={90} text={content} fontSize={11} />
+    <Text text="Berlaku hingga" fontSize={13} fontFamily="Roboto" />
+    <Text x={90} text=":" fontSize={13} fontFamily="Roboto" />
+    <Text x={100} text={content} fontSize={13} fontFamily="Roboto" />
   </Group>
 );
 
 const LabelKomandan = ({ y, content }) => (
   <Group y={y}>
-    <Text text={content} fontSize={11} fontStyle="bold" />
+    <Text text={content} fontSize={13} fontFamily="Roboto" fontStyle="bold" />
   </Group>
 );
 
 const NamaKomandan = ({ y, content }) => (
   <Group y={y}>
-    <Text text={content} fontSize={11} fontStyle="bold" />
+    <Text text={content} fontSize={13} fontFamily="Roboto" />
   </Group>
 );
 
 const PangkatKorpsNrpKomandan = ({ y, content }) => (
   <Group y={y}>
-    <Text text={content} fontSize={11} fontStyle="bold" />
+    <Text text={content} fontSize={13} fontFamily="Roboto" />
   </Group>
 );
 
@@ -132,13 +137,9 @@ const Komandan = ({
 }) => (
   <Group x={x} y={y}>
     <LabelKomandan y={0} content={label_komandan} />
-    <NamaKomandan y={25} content={nama_komandan} />
-    <PangkatKorpsNrpKomandan y={40} content={pangkat_korps_nrp_nip_komandan} />
+    <NamaKomandan y={45} content={nama_komandan} />
+    <PangkatKorpsNrpKomandan y={60} content={pangkat_korps_nrp_nip_komandan} />
   </Group>
-);
-
-const PasFoto = ({ x, y }) => (
-  <Image x={x} y={y} width={60} height={75} fill="white" />
 );
 
 class SimCanvas extends Component {
@@ -150,14 +151,29 @@ class SimCanvas extends Component {
     this.loadBarcode(sim_id);
     this.loadSignature();
     this.loadSidikJari();
+    this.loadPasFoto();
+  };
+
+  loadPasFoto = () => {
+    const { pas_foto } = this.props;
+    this.pas_foto = new window.Image();
+    this.pas_foto.src = pas_foto;
+
+    this.pas_foto.addEventListener("load", this.handleLoadPasFoto);
+  };
+
+  handleLoadPasFoto = () => {
+    this.setState({
+      pas_foto: this.pas_foto
+    });
   };
 
   loadBarcode = no_urut_sim => {
     this.barcode = new window.Image();
 
     JsBarcode(this.barcode, no_urut_sim, {
-      width: 1,
-      height: 14,
+      width: 2,
+      height: 25,
       background: "transparent",
       displayValue: false
     });
@@ -215,22 +231,23 @@ class SimCanvas extends Component {
       nama_komandan,
       pangkat_korps_nrp_nip_komandan
     } = this.props;
+
     return (
       <div>
-        <Stage width={500} height={300}>
+        <Stage width={600} height={400}>
           <Layer>
             <Rect
               x={0}
               y={0}
-              width={400}
-              height={250}
-              fill="blue"
+              width={500}
+              height={300}
               shadowBlur={5}
+              fill="blue"
             />
-            <NoSim x={80} y={40} content={no_sim} />
+            <NoSim x={125} y={60} content={no_sim} />
             <DataPribadi
-              x={10}
-              y={70}
+              x={20}
+              y={90}
               nama={nama}
               tempat_tanggal_lahir={tempat_tanggal_lahir}
               pangkat_korps_nrp_nip={pangkat_korps_nrp_nip}
@@ -238,31 +255,37 @@ class SimCanvas extends Component {
               golongan_darah={golongan_darah}
             />
             <KeteranganSim
-              x={220}
-              y={150}
+              x={260}
+              y={170}
               diberikan_di={diberikan_di}
               pada_tanggal={pada_tanggal}
               berlaku_hingga={berlaku_hingga}
             />
             <Komandan
-              x={240}
-              y={195}
+              x={280}
+              y={220}
               label_komandan={label_komandan}
               nama_komandan={nama_komandan}
               pangkat_korps_nrp_nip_komandan={pangkat_korps_nrp_nip_komandan}
             />
-            <PasFoto x={140} y={150} />
-            <Image x={135} y={220} image={this.state.barcode}></Image>
             <Image
-              x={10}
-              y={150}
+              x={140}
+              y={165}
+              image={this.state.pas_foto}
+              width={80}
+              height={95}
+            ></Image>
+            <Image x={126} y={255} image={this.state.barcode}></Image>
+            <Image
+              x={40}
+              y={165}
               image={this.state.sidik_jari}
-              width={50}
-              height={50}
+              width={80}
+              height={80}
             ></Image>
             <Image
-              x={-50}
-              y={200}
+              x={-10}
+              y={250}
               width={200}
               height={40}
               image={this.state.signature}

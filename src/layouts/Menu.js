@@ -56,9 +56,7 @@ const Menu = ({ onMenuClick, dense, logout }) => {
       <Divider />
       <List
         component="nav"
-        subheader={
-          <ListSubheader component="div">Area Administrasi</ListSubheader>
-        }
+        subheader={<ListSubheader component="div">Administrasi</ListSubheader>}
       >
         <MenuItemLink
           to={`/penyelenggara`}
