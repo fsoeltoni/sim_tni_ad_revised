@@ -21,9 +21,9 @@ import {
 import FormattedDateField from "../../helpers/components/FormattedDateField";
 import SimToolbar from "./helpers/components/SimToolbar";
 import validateNrpNip from "../../helpers/components/validations/validateNrpNip";
-import SignaturePadInput from "../../helpers/components/inputs/SignaturePadInput";
 import BarcodeReader from "react-barcode-reader";
 import CameraInput from "../../helpers/input/CameraInput";
+import SignaturePadInput from "../../helpers/input/SignaturePadInput";
 
 const CreateSim = ({ permissions, ...rest }) =>
   permissions ? (
@@ -38,6 +38,7 @@ const CreateSim = ({ permissions, ...rest }) =>
           pengguna_id: permissions.id
         }}
         toolbar={<SimToolbar />}
+        variant="outlined"
       >
         <FormTab label="Keterangan">
           <ReferenceInput
@@ -144,7 +145,7 @@ const ListSim = ({ permissions, ...rest }) => {
     <div>
       <BarcodeReader
         onError={error => console.log(error)}
-        onScan={() => console.log("SCANNED")}
+        onScan={scan => console.log(scan)}
       />
       <List
         {...rest}

@@ -221,7 +221,7 @@ const Komandan = ({
   </Group>
 );
 
-class SimCanvas extends Component {
+class SimCanvas2 extends Component {
   state = {};
 
   componentDidMount = () => {
@@ -231,6 +231,39 @@ class SimCanvas extends Component {
     this.loadSignature();
     this.loadSidikJari();
     this.loadPasFoto();
+    this.loadTandaTanganKomandan();
+    this.loadStempel();
+  };
+
+  loadStempel = () => {
+    const { stempel } = this.props;
+    this.stempel = new window.Image();
+    this.stempel.src = stempel;
+
+    this.stempel.addEventListener("load", this.handleLoadStempel);
+  };
+
+  handleLoadStempel = () => {
+    this.setState({
+      stempel: this.stempel
+    });
+  };
+
+  loadTandaTanganKomandan = () => {
+    const { tanda_tangan_komandan } = this.props;
+    this.tanda_tangan_komandan = new window.Image();
+    this.tanda_tangan_komandan.src = tanda_tangan_komandan;
+
+    this.tanda_tangan_komandan.addEventListener(
+      "load",
+      this.handleLoadTandaTanganKomandan
+    );
+  };
+
+  handleLoadTandaTanganKomandan = () => {
+    this.setState({
+      tanda_tangan_komandan: this.tanda_tangan_komandan
+    });
   };
 
   loadPasFoto = () => {
@@ -298,8 +331,8 @@ class SimCanvas extends Component {
       mimeType: "image/png",
       width: 325,
       height: 204,
-      quality: 1,
-      pixelRatio: 3
+      quality: 2,
+      pixelRatio: 5
     });
 
     this.setState({ image });
@@ -359,29 +392,43 @@ class SimCanvas extends Component {
               pangkat_korps_nrp_nip_komandan={pangkat_korps_nrp_nip_komandan}
             />
             <Image
-              x={87}
+              x={88}
               y={107}
               image={this.state.pas_foto}
               width={75}
               height={90}
             ></Image>
             <Image
-              x={250}
-              y={10}
+              x={160}
+              y={147}
+              image={this.state.tanda_tangan_komandan}
+              width={200}
+              height={40}
+            ></Image>
+            <Image
+              x={175}
+              y={135}
+              image={this.state.stempel}
+              width={60}
+              height={60}
+            ></Image>
+            <Image
+              x={10}
+              y={177}
               width={70}
               height={20}
               image={this.state.barcode}
             ></Image>
             <Image
               x={10}
-              y={120}
+              y={105}
               image={this.state.sidik_jari}
-              width={40}
-              height={60}
+              width={35}
+              height={40}
             ></Image>
             <Image
-              x={-50}
-              y={155}
+              x={-65}
+              y={135}
               width={200}
               height={40}
               image={this.state.signature}
@@ -395,4 +442,4 @@ class SimCanvas extends Component {
   }
 }
 
-export default SimCanvas;
+export default SimCanvas2;

@@ -18,6 +18,7 @@ import {
 import moment from "moment";
 import validateNrpNip from "../../helpers/components/validations/validateNrpNip";
 import PenyelenggaraToolbar from "./helpers/components/PenyelenggaraToolbar";
+import SignaturePadInput from "../../helpers/input/SignaturePadInput";
 
 const CreatePenyelenggara = ({ ...rest }) => (
   <Create {...rest} title="Penyelenggara">
@@ -75,6 +76,7 @@ const CreatePenyelenggara = ({ ...rest }) => (
         label="NRP/NIP Komandan"
         validate={validateNrpNip}
       />
+      <SignaturePadInput />
     </SimpleForm>
   </Create>
 );

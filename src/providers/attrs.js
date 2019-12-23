@@ -1,4 +1,4 @@
-const server = "http://localhost:3000";
+const server = "http://192.168.0.99:3000";
 const live_camera_server = "http://localhost:5514/live";
 const camera_server = "http://localhost:5513/";
 

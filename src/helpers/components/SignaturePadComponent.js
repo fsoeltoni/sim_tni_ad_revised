@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Card, CardActions, Button, CardContent } from "@material-ui/core";
+import {
+  Card,
+  CardActions,
+  Button,
+  CardContent,
+  makeStyles
+} from "@material-ui/core";
 
 class SignaturePadComponent extends Component {
   componentDidMount = () => {
@@ -21,7 +27,7 @@ class SignaturePadComponent extends Component {
       imageX: canvas.width,
       imageY: canvas.height,
       imageTransparency: true,
-      imageScaling: true,
+      imageScaling: false,
       maxUpScalePercent: 0.0,
       rawDataFormat: "ENC",
       minSigPoints: 25
@@ -91,12 +97,14 @@ class SignaturePadComponent extends Component {
             ref="canvas"
             id="cnv"
             name="cnv"
-            width="250"
-            height="50"
+            width="500"
+            height="100"
           ></canvas>
         </CardContent>
         <CardActions>
-          <Button onClick={this.startSign}>Tanda Tangani</Button>
+          <Button style={{ margin: "auto" }} onClick={this.startSign}>
+            Tanda Tangani
+          </Button>
         </CardActions>
       </Card>
     );

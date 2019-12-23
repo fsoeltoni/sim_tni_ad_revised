@@ -4,18 +4,31 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  Slide
+  Slide,
+  makeStyles
 } from "@material-ui/core";
 import toBase64 from "image-to-base64";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import attrs from "../../providers/attrs";
 
+const useStyles = makeStyles(theme => ({
+  button: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: 50,
+    marginBottom: 50,
+    margin: "auto",
+    width: "fit-content"
+  }
+}));
+
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const CameraComponent = ({ input: { onChange }, ...rest }) => {
+  const classes = useStyles();
   const capturedServer = attrs.url.capturedServer;
   const liveViewServer = attrs.url.liveViewServer;
   const cropRef = useRef();
@@ -53,7 +66,12 @@ const CameraComponent = ({ input: { onChange }, ...rest }) => {
         />
       )}
 
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}
+        className={classes.button}
+      >
         Aktifkan Kamera
       </Button>
 
@@ -64,10 +82,11 @@ const CameraComponent = ({ input: { onChange }, ...rest }) => {
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
+        fullWidth
       >
-        <DialogContent>
-          <img src={liveViewServer} alt="Live View" />
-        </DialogContent>
+        {/* <DialogContent> */}
+        <img src={liveViewServer} alt="Live View" />
+        {/* </DialogContent> */}
         <DialogActions>
           <Button onClick={handleCapture} color="primary">
             Ambil Foto

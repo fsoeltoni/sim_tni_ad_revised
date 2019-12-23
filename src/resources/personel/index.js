@@ -24,6 +24,7 @@ const CreatePersonel = ({ ...rest }) => (
         created: moment(),
         updated: moment()
       }}
+      variant="outlined"
     >
       <TextInput source="nama" label="Nama" />
       <ReferenceInput
@@ -115,8 +116,7 @@ const CreatePersonel = ({ ...rest }) => (
       <FormDataConsumer>
         {({ formData, ...rest }) =>
           formData.jenis_personel_id &&
-          formData.jenis_personel_id === 1 &&
-          formData.pangkat && (
+          formData.jenis_personel_id === 1 && (
             <ReferenceInput
               source="kecabangan_id"
               label="Kecabangan"
@@ -270,8 +270,7 @@ const EditPersonel = ({ ...rest }) => (
       <FormDataConsumer>
         {({ formData, ...rest }) =>
           formData.jenis_personel_id &&
-          formData.jenis_personel_id === 1 &&
-          formData.pangkat_id && (
+          formData.jenis_personel_id === 1 && (
             <ReferenceInput
               source="kecabangan_id"
               label="Kecabangan"

@@ -3,7 +3,7 @@ import { Card, CardContent, CardActions, Button } from "@material-ui/core";
 import { Title, useDataProvider } from "react-admin";
 import moment from "moment";
 import monthToRoman from "../../monthToRoman";
-import SimCanvas from "./SimCanvas";
+import SimCanvas2 from "./SimCanvas2";
 import ReactToPrint from "react-to-print";
 import image2base64 from "image-to-base64";
 
@@ -163,11 +163,16 @@ const SimPrint = ({
     display_korps_komandan +
     "/" +
     display_nrp_komandan;
+  const display_tanda_tangan_komandan = penyelenggara
+    ? penyelenggara.tanda_tangan
+    : null;
+  const display_stempel = penyelenggara ? penyelenggara.stempel : null;
   const display_tanda_tangan = sim ? sim.tanda_tangan : null;
   const display_sidik_jari = sim ? sim.sidik_jari[0].src : null;
   const display_pas_foto = sim ? sim.pas_foto : null;
 
   const componentRef = useRef();
+
   return (
     <Card>
       <Title title="Cetak SIM" />
@@ -185,7 +190,7 @@ const SimPrint = ({
           display_label_komandan &&
           display_nama_komandan &&
           display_pangkat_korps_nrp_komandan && (
-            <SimCanvas
+            <SimCanvas2
               ref={componentRef}
               sim_id={display_sim_id}
               no_sim={display_kode_sim}
@@ -202,6 +207,8 @@ const SimPrint = ({
               pangkat_korps_nrp_nip_komandan={
                 display_pangkat_korps_nrp_komandan
               }
+              tanda_tangan_komandan={display_tanda_tangan_komandan}
+              stempel={display_stempel}
               no_urut_sim={display_kode_sim_no_urut_sim}
               tanda_tangan={display_tanda_tangan}
               sidik_jari={display_sidik_jari}
